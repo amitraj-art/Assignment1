@@ -37,8 +37,11 @@ public:
         return subject;
     }
 };
+bool CompareBySubject(Student &a, Student &b){
+    return a.getStudentSubject() < b.getStudentSubject();
+}
 int main(){
-    vector<string> StudentSubject;
+    vector<Student> StudentSubject;
     while(true)
     {   
         int j;
@@ -50,14 +53,15 @@ int main(){
             Student stuObj;
             stuObj.getInput();
             //stuObj.display();
-            StudentSubject.push_back(stuObj.getStudentSubject());
+            StudentSubject.push_back(stuObj);
         }
         else cout<<"Wrong input"<<endl;
     }
-    sort(StudentSubject.begin(), StudentSubject.end());
+    sort(StudentSubject.begin(), StudentSubject.end(), CompareBySubject);
+    cout << "Students sorted by subject:" << endl;
     for(int i=0; i<StudentSubject.size(); i++)
     {
-        cout<<StudentSubject[i]<<endl;
+        StudentSubject[i].display();
     }
     
     return 0;
